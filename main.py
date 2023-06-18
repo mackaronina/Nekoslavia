@@ -6548,7 +6548,6 @@ def updater():
         time.sleep(1)
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0',port=80)
     schedule.every().monday.at("23:01").do(jobtu)
     schedule.every().tuesday.at("23:01").do(jobwe)
     schedule.every().wednesday.at("23:01").do(jobth)
@@ -6560,3 +6559,5 @@ if __name__ == '__main__':
     schedule.every(60).seconds.do(jobupd)
     t = Thread(target=updater)
     t.start()
+    app.run(host='0.0.0.0',port=80)
+  
