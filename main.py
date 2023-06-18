@@ -18,7 +18,7 @@ from pkg_resources import resource_stream
 from sqlalchemy import create_engine
 import json
 import requests
-
+time.sleep(120)
 token = '5388861642:AAGb08Jk5d_ukvzENmIY8JXn94UySQPsJ9A'
 bot = telebot.TeleBot(token, threaded=False)
 
