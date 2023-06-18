@@ -23,7 +23,8 @@ token = '5388861642:AAGb08Jk5d_ukvzENmIY8JXn94UySQPsJ9A'
 bot = telebot.TeleBot(token, threaded=False)
 
 #cursor = create_engine("mysql+mysqldb://Bibasosinka:foxy1987@Bibasosinka.mysql.pythonanywhere-services.com/Bibasosinka$default",pool_recycle=280)
-cursor = create_engine("sqlite:///nekoslavia.db",pool_recycle=280)
+#cursor = create_engine("sqlite:///nekoslavia.db",pool_recycle=280)
+cursor = create_engine("postgresql://scqvirad:fiEMsH6qg24NVE1Tt2NaUQEfIllS3BD8@dumbo.db.elephantsql.com/scqvirad",pool_recycle=280)
 #conn = connect(host="Bibasosinka.mysql.pythonanywhere-services.com",user="Bibasosinka",password="foxy1987", database="Bibasosinka$default")
 #cursor = engine.connect()
 #cursor = conn.cursor()
