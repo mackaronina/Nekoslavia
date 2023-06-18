@@ -32,7 +32,7 @@ frames = 10
 resolution = (512, 512)
 delay = 20
 
-APP_URL = f'https://nekoslaviabot.mihamishu123.repl.co/{token}'
+APP_URL = f'https://nekoslaviabot.onrender.com/{token}'
 app = Flask(__name__)
 bot.remove_webhook()
 bot.set_webhook(url=APP_URL)
