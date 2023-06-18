@@ -6402,5 +6402,161 @@ def get_message():
 @app.route('/')
 def get_ok():
     return 'ok', 200
+
+
+
+
+def jobmo():
+    bot.send_sticker(-1001268892138, 'CAACAgIAAxkBAAEE1S5ikMzhzjyo5wXFT3FXJc1QfEGT-gACgxUAAuqKgUvgoYyaWs-hnSQE')
+    bot.send_message(-1001268892138, 'Спокойной ночи, некославы')
+def jobtu():
+    bot.send_sticker(-1001268892138, 'CAACAgIAAxkBAAEE1TBikMzlxp-F-OAnXJ5mDMygsK41oAACyRYAAqjSgUvZ7sYejHfOlyQE')
+    bot.send_message(-1001268892138, 'Спокойной ночи, некославы')
+def jobwe():
+    bot.send_sticker(-1001268892138, 'CAACAgIAAxkBAAEE1TJikMztMFxCKSh2kxVos_BdnsBlEgACNxQAAksbgEvt_JM25B-doyQE')
+    bot.send_message(-1001268892138, 'Спокойной ночи, некославы')
+def jobth():
+    bot.send_sticker(-1001268892138, 'CAACAgIAAxkBAAEE1TRikMzx053XPlFUosf0fDT6yAwoogACohcAArw1gUu9AtlM7MrK8CQE')
+    bot.send_message(-1001268892138, 'Спокойной ночи, некославы')
+def jobfr():
+    bot.send_sticker(-1001268892138, 'CAACAgIAAxkBAAEE1TZikMz1RgVpp8Q-zbLrpIOFdaL09wACbBUAAu4tiEs5QNHnNZ-5ByQE')
+    bot.send_message(-1001268892138, 'Спокойной ночи, некославы')
+def jobsa():
+    bot.send_sticker(-1001268892138, 'CAACAgIAAxkBAAEE1ThikMz4-mrv2wFbCA1hjTrvmWKAGAACWxcAAomDiUu7YG_wPShz4yQE')
+    bot.send_message(-1001268892138, 'Спокойной ночи, некославы')
+def jobsu():
+    bot.send_sticker(-1001268892138, 'CAACAgIAAxkBAAEE1TpikMz8T3SW2L914SMykVrJWvoR8gACoBYAAgwTgUsYv06y1Bvz1CQE')
+    bot.send_message(-1001268892138, 'Спокойной ночи, некославы')
+def jobday():
+    bot.send_sticker(-1001268892138, 'CAACAgIAAxkBAAEE3Nhikp10A0x2mXRExbnjP1Rm3m4jvAACpxAAAntFWEgwuu0ea7AOsSQE')
+def jobupd():
+  try:
+    bot.send_message(738931917, 'Проверка')
+    data = cursor.execute('SELECT * FROM neko')
+    data = data.fetchall()
+    i = 0
+    while i < len(data):
+        nam = str(data[i][1]).rstrip()
+        idk = data[i][0]
+        ch = data[i][13]
+        chel = str(data[i][16]).rstrip()
+        notifed = data[i][39]
+        kormit = int(time.time() - data[i][4])
+        if kormit > 4*24*3600 and notifed == 0:
+            try:
+                cursor.execute("UPDATE neko SET notifed = 1 WHERE id = " + str(idk))
+                bot.send_message(ch, nam + ' уже не ела четыре дня! <a href="tg://user?id='+str(idk)+'">'+str(chel)+'</a>, ты мне не хочешь ничего объяснить?',parse_mode='HTML')
+                bot.send_sticker(ch, 'CAACAgIAAxkBAAEFNvlixtyYbnUoOviqOfiUaIH6jdlPhAACuxMAAsmQWEhravemy77rYSkE')
+            except:
+                pass
+
+        #if kormit > 5*24*3600:
+        #    try:
+        #        bot.send_message(ch, nam + ' умерла от голода... <a href="tg://user?id='+str(idk)+'">'+str(chel)+'</a>, её смерть на твоей совести, и ты теперь изгнан из Некославии',parse_mode='HTML')
+        #        bot.send_sticker(ch, 'CAACAgIAAxkBAAEFNNFixbh5x7lPtkqzBN2g8YO9FAMCLgACjxEAAqg6WEjqQFCw4uPiwikE')
+        #    except:
+        #        pass
+        #    if nam == 'Некодевочка':
+        #        cursor.execute("INSERT INTO dead (name,time) VALUES ('Безымянная могила',"+str(int(time.time())) +")")
+        #    else:
+        #        cursor.execute("INSERT INTO dead (name,time) VALUES ('"+nam+"',"+str(int(time.time())) +")")
+        #    cursor.execute("DELETE FROM neko WHERE id = "+str(idk))
+        i = i + 1
+    data = cursor.execute('SELECT * FROM battles')
+    data = data.fetchall()
+    i = 0
+    while i < len(data):
+        one = data[i][0]
+        two = data[i][1]
+        event = data[i][2]
+        wait = data[i][3]
+        ch = data[i][5]
+        msg = data[i][6]
+        wait = int(wait - time.time())
+        if wait <= 0:
+            if event == 0:
+                try:
+                    bot.edit_message_text(chat_id=ch, message_id=msg,text="Что ж, на вызов так никто и не ответил..")
+                except:
+                    pass
+                cursor.execute("DELETE FROM battles WHERE one = "+str(one)+" AND two = " + str(two))
+            if event == 2:
+                try:
+                    bot.edit_message_caption(chat_id=ch, message_id=msg,caption="Это был затяжной бой, завершившийся ничьёй..")
+                except:
+                    pass
+                cursor.execute("DELETE FROM battles WHERE one = "+str(one)+" AND two = " + str(two))
+        i = i + 1
+    data = cursor.execute('SELECT * FROM dungeons')
+    data = data.fetchall()
+    i = 0
+    while i < len(data):
+        idk = data[i][0]
+        wait = data[i][4]
+        ch = data[i][3]
+        msg = data[i][2]
+        wait = int(wait - time.time())
+        if wait <= 0:
+                try:
+                    bot.edit_message_media(media=telebot.types.InputMedia(media='AgACAgIAAx0CZQN7rQACwxZi8uNUoMtUGP6J96D7X-pveAGj3wAC374xGxy_mEsWdB1RBPi4nQEAAwIAA3MAAykE',caption='Твоя некодевочка не выдержала ужасов LGBT мира и сбежала, бросив всё найденное. В следующий раз не заставляй её находиться там так долго',type="photo"),chat_id=ch, message_id=msg)
+                except:
+                    pass
+                cursor.execute("DELETE FROM dungeons WHERE id = "+str(idk))
+        i = i + 1
+    data = cursor.execute('SELECT * FROM poker')
+    data = data.fetchall()
+    i = 0
+    while i < len(data):
+        idk = data[i][0]
+        event = data[i][2]
+        wait = data[i][3]
+        ch = data[i][4]
+        msg = data[i][5]
+        wait = int(wait - time.time())
+        if wait <= 0:
+                try:
+                    if event == -1:
+                        bot.edit_message_text(chat_id=ch, message_id=msg,text = 'Никто не отозвался, одно ссыкло в чате')
+                    else:
+                        bot.edit_message_media(media=telebot.types.InputMedia(media='AgACAgIAAx0CZQN7rQACwxZi8uNUoMtUGP6J96D7X-pveAGj3wAC374xGxy_mEsWdB1RBPi4nQEAAwIAA3MAAykE',caption='Вы играли слишком долго и охранникам пришлось заставить вас освободить стол',type="photo"),chat_id=ch, message_id=msg)
+                except:
+                    pass
+                cursor.execute("DELETE FROM poker WHERE id = "+str(idk))
+        i = i + 1
+    data = cursor.execute('SELECT * FROM papers')
+    data = data.fetchall()
+    i = 0
+    while i < len(data):
+        idk = data[i][0]
+        wait = data[i][2]
+        ch = data[i][3]
+        msg = data[i][4]
+        wait = int(wait - time.time())
+        if wait <= 0:
+                try:
+                    bot.edit_message_media(media=telebot.types.InputMedia(media='AgACAgIAAx0CZQN7rQAC36hj7xy2suavuAqw-0Qq3sBI_jwxVAACbcIxG2V6eUvcsQGSTN-iYQEAAwIAA3MAAy4E',caption='Рабочий день закончился, в следующий раз будь быстрее',type="photo"),chat_id=ch, message_id=msg)
+                except:
+                    pass
+                cursor.execute("DELETE FROM papers WHERE id = "+str(idk))
+        i = i + 1
+  except Exception as e:
+    bot.send_message(738931917, e)
+
+def updater():
+    while True:
+        schedule.run_pending()
+        time.sleep(1)
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0',port=80)
+    schedule.every().monday.at("23:01").do(jobtu)
+    schedule.every().tuesday.at("23:01").do(jobwe)
+    schedule.every().wednesday.at("23:01").do(jobth)
+    schedule.every().thursday.at("23:01").do(jobfr)
+    schedule.every().friday.at("23:01").do(jobsa)
+    schedule.every().saturday.at("23:01").do(jobsu)
+    schedule.every().sunday.at("23:01").do(jobmo)
+    schedule.every().day.at("06:01").do(jobday)
+    schedule.every(60).seconds.do(jobupd)
+    t = Thread(target=updater)
+    t.start()
