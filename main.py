@@ -1038,13 +1038,9 @@ def repeat_text(message):
                 return
             text = 'Это богатейшие граждане Некославии. Когда-нибудь ты станешь одним из них, если, конечно, не будешь проёбывать все деньги в казино\n\n'
             
-            cmd = """'SELECT * FROM neko ORDER BY coins DESC'"""
-            api_url = 'https://bibasosinka.pythonanywhere.com/sql/'
-            response = requests.get(api_url + cmd)
-            response_json = response.json()
-            data = response_json["data"]
-            #data = cursor.execute('SELECT * FROM neko ORDER BY coins DESC')
-            #data = data.fetchall()
+          
+            data = cursor.execute('SELECT * FROM neko ORDER BY coins DESC')
+            data = data.fetchall()
             i = 0
             if data is not None:
              for d in data:
