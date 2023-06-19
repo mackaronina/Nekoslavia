@@ -1007,8 +1007,14 @@ def repeat_text(message):
             m = m.fetchone()
             m = m[0]
             text = 'Питомцы лучших граждан нашей родины, Некославии. Нет, числа это не цена за час, даже не думай об этом\n\n'
-            data = cursor.execute('SELECT * FROM neko ORDER BY rep DESC')
-            data = data.fetchall()
+            cmd = """SELECT * FROM neko ORDER BY rep DESC"""
+            api_url = 'https://bibasosinka.pythonanywhere.com/sql/'
+            response = requests.get(api_url + cmd)
+            response_json = response.json()
+            data = response_json["data"]
+
+            #data = cursor.execute('SELECT * FROM neko ORDER BY rep DESC')
+            #data = data.fetchall()
             i = 0
             if data is not None:
              for d in data:
