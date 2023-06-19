@@ -1031,8 +1031,14 @@ def repeat_text(message):
                 bot.send_message(message.chat.id,'Ты не один из нас, напиши /start чтобы стать некославом')
                 return
             text = 'Это богатейшие граждане Некославии. Когда-нибудь ты станешь одним из них, если, конечно, не будешь проёбывать все деньги в казино\n\n'
-            data = cursor.execute('SELECT * FROM neko ORDER BY coins DESC')
-            data = data.fetchall()
+            
+            cmd = """'SELECT * FROM neko ORDER BY coins DESC'"""
+            api_url = 'https://bibasosinka.pythonanywhere.com/sql/'
+            response = requests.get(api_url + cmd)
+            response_json = response.json()
+            data = response_json["data"]
+            #data = cursor.execute('SELECT * FROM neko ORDER BY coins DESC')
+            #data = data.fetchall()
             i = 0
             if data is not None:
              for d in data:
